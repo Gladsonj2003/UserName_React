@@ -22,7 +22,6 @@ def add_users():
     }
 
     try:
-        # Use insert_one instead of insert_many
         collection.insert_one(user)
         return jsonify({"message": "User inserted successfully"}), 201
     except Exception as e:

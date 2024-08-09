@@ -5,7 +5,7 @@ function App() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [error, setError] = useState('');
-  const [message, setMessage] = useState(''); // State for success message
+  const [message, setMessage] = useState('');
 
   const handleSubmit = async (event) => {
     event.preventDefault();

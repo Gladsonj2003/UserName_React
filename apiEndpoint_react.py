@@ -5,6 +5,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
+# Connect to MongoDB
 client = MongoClient('mongodb+srv://Gladson:Gladson2016@gladson.qypfogn.mongodb.net/?retryWrites=true&w=majority&appName=Gladson')
 db = client.userDB
 collection = db.userCollection
@@ -24,6 +25,14 @@ def add_users():
     try:
         collection.insert_one(user)
         return jsonify({"message": "User inserted successfully"}), 201
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+@app.route('/get_users', methods=['GET'])
+def get_users():
+    try:
+        users = list(collection.find({}, {'_id': 0}))  # Exclude MongoDB `_id`
+        return jsonify({"users": users}), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 

@@ -1,27 +1,77 @@
-.App {
-  text-align: center;
-  margin: 20px;
-  padding: 40px;
-  max-width: 600px;
-  margin: auto;
-  background: #333;
-  border-radius: 12px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); 
-  color: #f5f5f5;
-  cursor: none;
-  user-select: none;
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #000;
+  margin: 0;
+  padding: 20px;
 }
 
 h1 {
-  font-size: 32px; 
+  font-size: 32px;
   margin-bottom: 20px;
   color: #f5f5f5;
+  text-align: center; /* Center the title text for all h1 elements */
 }
 
-form {
+h2 {
+  font-size: 32px;
+  color: white;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.user-list-container {
   display: flex;
-  flex-direction: column;
-  gap: 20px;
+  justify-content: space-between;
+  gap: 150px; /* Increased space between the boxes */
+  margin: 0 auto; /* Centering the container */
+  max-width: 1200px; /* Ensure it fits within the view */
+}
+
+.user-list,
+.user-details {
+  background: #444;
+  color: white;
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Subtle shadow for better depth */
+}
+
+.user-list {
+  padding: 20px;
+  max-width: 300px; /* Fixed width for the user list */
+  margin-right: auto; /* Ensure it's positioned independently */
+  text-align: left;
+  flex-shrink: 0; /* Prevent the box from expanding */
+  max-height: 400px; /* Set max height to enable scrolling */
+  overflow-y: auto; /* Add vertical scroll if content overflows */
+  overflow-x: hidden; /* Ensure no horizontal scroll */
+}
+
+.user-details {
+  padding: 20px;
+  max-width: 600px; /* Fixed width for the user details */
+  margin-left: auto; /* Ensure it's positioned independently */
+  text-align: center;
+  flex-shrink: 0; /* Prevent the box from expanding */
+}
+
+.user-list h2,
+.user-details h1 {
+  margin: 0 0 10px 0; /* Reduced margin at the bottom for the title */
+  white-space: nowrap; /* Prevent the title from breaking into two lines */
+}
+
+ol {
+  list-style-type: decimal; /* Numbered list */
+  padding-left: 20px;
+  color: #f5f5f5;
+  margin: 0;
+  font-size: 16px; /* Adjust font size for better readability */
+  width: 100%; /* Ensure list takes full width of the container */
+  box-sizing: border-box; /* Ensure padding and border are included in the width */
 }
 
 label {
@@ -34,7 +84,7 @@ label {
 }
 
 input {
-  padding: 14px; 
+  padding: 14px;
   border: 1px solid #555;
   border-radius: 8px;
   font-size: 16px;
@@ -65,6 +115,7 @@ button {
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s;
+  margin-top: 20px; /* Added margin-top to give space between the last name input and the button */
 }
 
 button:hover {

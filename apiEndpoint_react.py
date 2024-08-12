@@ -8,7 +8,10 @@ CORS(app)
 # Connect to MongoDB
 client = MongoClient('mongodb+srv://Gladson:Gladson2016@gladson.qypfogn.mongodb.net/?retryWrites=true&w=majority&appName=Gladson')
 db = client.userDB
-collection = db.userCollection
+
+# Define collections
+user_details_collection = db.userDetails
+user_auth_collection = db.userAuth
 
 @app.route('/add_users', methods=['POST'])
 def add_users():
@@ -23,22 +26,71 @@ def add_users():
     }
 
     try:
-        collection.insert_one(user)
-        return jsonify({"message": "User inserted successfully"}), 201
+        user_details_collection.insert_one(user)
+        return jsonify({"message": "User details inserted successfully"}), 201
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
 @app.route('/get_users', methods=['GET'])
 def get_users():
     try:
-        users = list(collection.find({}, {'_id': 0}))  # Exclude MongoDB `_id`
+        users = list(user_details_collection.find({}, {'_id': 0}))  # Exclude MongoDB `_id`
         return jsonify({"users": users}), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-@app.route('/health', methods=['GET'])
-def health_check():
-    return jsonify({"status": "API is running"}), 200
+@app.route('/signup', methods=['POST'])
+def signup():
+    data = request.json
+
+    if not data or 'email' not in data or 'password' not in data:
+        return jsonify({"error": "Invalid input, expected 'email' and 'password' fields"}), 400
+
+    user = {
+        "email": data['email'],
+        "password": data['password']  # Be sure to hash passwords in production
+    }
+
+    try:
+        user_auth_collection.insert_one(user)
+        return jsonify({"message": "Account created successfully"}), 201
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+    
+@app.route('/login', methods=['POST'])
+def login():
+    data = request.json
+
+    if not data or 'email' not in data or 'password' not in data:
+        return jsonify({"error": "Invalid input, expected 'email' and 'password' fields"}), 400
+
+    user = user_auth_collection.find_one({"email": data['email']})
+
+    if user and user.get('password') == data['password']:  # Be sure to hash and compare passwords securely
+        return jsonify({"message": "Login successful"}), 200
+    else:
+        return jsonify({"error": "Invalid credentials"}), 401
+
+
+@app.route('/forgot-password', methods=['POST'])
+def forgot_password():
+    data = request.json
+
+    if not data or 'email' not in data or 'newPassword' not in data:
+        return jsonify({"error": "Invalid input, expected 'email' and 'newPassword' fields"}), 400
+
+    try:
+        result = user_auth_collection.update_one(
+            {"email": data['email']},
+            {"$set": {"password": data['newPassword']}}  # Be sure to hash passwords in production
+        )
+        if result.matched_count:
+            return jsonify({"message": "Password reset successfully"}), 200
+        else:
+            return jsonify({"error": "Email not found"}), 404
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
 
 if __name__ == "__main__":
     app.run(debug=True)

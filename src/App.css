@@ -1,12 +1,18 @@
+/* Global styles */
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #000000; /* Black background */
+  color: #ffffff; /* White text for contrast */
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Container styles */
+.App {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #000;
-  margin: 0;
-  padding: 20px;
 }
 
 h1 {
@@ -23,119 +29,213 @@ h2 {
   margin-bottom: 10px;
 }
 
+/* User list and details container styles */
 .user-list-container {
   display: flex;
   justify-content: space-between;
-  gap: 150px; /* Increased space between the boxes */
-  margin: 0 auto; /* Centering the container */
-  max-width: 1200px; /* Ensure it fits within the view */
+  gap: 150px;
+  width: 50%;
+  margin: 0 auto;
 }
 
-.user-list,
-.user-details {
-  background: #444;
-  color: white;
-  border-radius: 8px; /* Rounded corners */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Subtle shadow for better depth */
-}
-
+/* User list styles */
 .user-list {
+  background-color: #1a1a1a;
   padding: 20px;
-  max-width: 300px; /* Fixed width for the user list */
-  margin-right: auto; /* Ensure it's positioned independently */
-  text-align: left;
-  flex-shrink: 0; /* Prevent the box from expanding */
-  max-height: 400px; /* Set max height to enable scrolling */
-  overflow-y: auto; /* Add vertical scroll if content overflows */
-  overflow-x: hidden; /* Ensure no horizontal scroll */
+  border-radius: 8px;
+  width: 45%;
+  max-height: 400px;
+  overflow-y: auto; /* Scroll slider */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+.user-list h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.user-list ol {
+  list-style-position: inside;
+  padding-left: 0;
+}
+
+.user-list li {
+  margin-bottom: 10px;
+  color: #dddddd;
+}
+
+/* User details styles */
+/* User details styles */
 .user-details {
+  background-color: #1a1a1a;
   padding: 20px;
-  max-width: 600px; /* Fixed width for the user details */
-  margin-left: auto; /* Ensure it's positioned independently */
-  text-align: center;
-  flex-shrink: 0; /* Prevent the box from expanding */
+  border-radius: 8px;
+  width: 45%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box; /* Ensure padding is included in the total width */
 }
 
-.user-list h2,
 .user-details h1 {
-  margin: 0 0 10px 0; /* Reduced margin at the bottom for the title */
-  white-space: nowrap; /* Prevent the title from breaking into two lines */
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #ffffff;
+  white-space: nowrap; /* Prevent the title from wrapping */
+  overflow: hidden; /* Hide overflow if title is too long */
+  text-overflow: ellipsis; /* Display ellipsis if title is too long */
 }
 
-ol {
-  list-style-type: decimal; /* Numbered list */
-  padding-left: 20px;
-  color: #f5f5f5;
-  margin: 0;
-  font-size: 16px; /* Adjust font size for better readability */
-  width: 100%; /* Ensure list takes full width of the container */
-  box-sizing: border-box; /* Ensure padding and border are included in the width */
-}
-
-label {
+.user-details form {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  font-size: 18px;
-  color: #f5f5f5;
-  text-align: left;
 }
 
-input {
-  padding: 14px;
-  border: 1px solid #555;
-  border-radius: 8px;
-  font-size: 16px;
-  width: 100%;
-  box-sizing: border-box;
-  background-color: #444;
-  color: #f5f5f5;
-  transition: border-color 0.3s, box-shadow 0.3s;
-  cursor: text;
+.user-details label {
+  color: #dddddd;
+  margin-bottom: 10px;
 }
 
-input::placeholder {
-  color: #888;
+.user-details input {
+  padding: 12px; /* Increased padding for larger input fields */
+  border-radius: 4px;
+  border: 1px solid #333333;
+  margin-bottom: 10px; /* Reduced margin to decrease space */
+  background-color: #333333;
+  color: #ffffff;
+  width: calc(100% - 24px); /* Ensure input fills almost the entire width */
+  box-sizing: border-box; /* Include padding and border in width */
 }
 
-input:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
-  outline: none;
-}
-
-button {
-  background-color: #007bff;
+.user-details button {
+  padding: 10px 0; /* Vertical padding for button height */
   border: none;
-  color: white;
-  padding: 14px 24px;
-  font-size: 18px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
-  margin-top: 20px; /* Added margin-top to give space between the last name input and the button */
-}
-
-button:hover {
+  border-radius: 4px;
   background-color: #0056b3;
-  transform: translateY(-2px);
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 14px; /* Font size for smaller button */
+  width: 100px; /* Fixed width for the button */
+  margin: 0 auto; /* Center the button */
 }
 
-button:active {
-  background-color: #004494;
-  transform: translateY(0);
+.user-details button:hover {
+  background-color: #004494; /* Slightly darker shade for hover effect */
 }
+
+/* Login, Signup, and Forgot Password pages */
+.login-container,
+.signup-container,
+.forgot-password-container {
+  background-color: #1a1a1a;
+  padding: 40px;
+  border-radius: 8px;
+  width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.login-container h1,
+.signup-container h1,
+.forgot-password-container h1 {
+  color: #ffffff;
+}
+
+.login-container form,
+.signup-container form,
+.forgot-password-container form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center; /* Align the form contents to the center */
+}
+
+.login-container label,
+.signup-container label,
+.forgot-password-container label {
+  color: #dddddd;
+  margin-bottom: 10px;
+  text-align: left;
+  width: 100%; /* Ensure labels take up full width */
+}
+
+.login-container input,
+.signup-container input,
+.forgot-password-container input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #333333;
+  margin-bottom: 20px;
+  background-color: #333333;
+  color: #ffffff;
+}
+
+.login-container button,
+.signup-container button,
+.forgot-password-container button {
+  padding: 8px 16px; /* Smaller width for the button */
+  border: none;
+  border-radius: 4px;
+  background-color: #0056b3;
+  width: 100px;
+  color: #ffffff;
+  cursor: pointer;
+  align-self: center; /* Center the button */
+}
+
+.login-container button:hover,
+.signup-container button:hover,
+.forgot-password-container button:hover {
+  background-color: #004494;
+}
+
+.login-container p,
+.signup-container p,
+.forgot-password-container p {
+  color: #dddddd;
+}
+
+.login-container a,
+.signup-container a,
+.forgot-password-container a {
+  color: #0056b3;
+  text-decoration: none;
+}
+
+.login-container a:hover,
+.signup-container a:hover,
+.forgot-password-container a:hover {
+  text-decoration: underline;
+}
+
+/* Logout button styles */
+.logout-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #0056b3;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.logout-button:hover {
+  background-color: #004494;
+}
+
 
 .error {
-  color: #ff4d4d;
-  font-size: 16px;
-  margin-top: 10px;
+  color: #ff4c4c;
 }
 
 .success {
-  color: #4CAF50;
-  font-size: 16px;
-  margin-top: 10px;
+  color: #4caf50;
+  text-align: center;
 }

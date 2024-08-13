@@ -25,6 +25,9 @@ def add_users():
         "lastName": data['lastName']
     }
 
+    if user_details_collection.find_one({"firstName": data['firstName'], "lastName": data['lastName']}):
+        return jsonify({"error": "User already exists"}), 400
+
     try:
         user_details_collection.insert_one(user)
         return jsonify({"message": "User details inserted successfully"}), 201

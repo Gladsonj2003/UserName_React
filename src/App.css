@@ -38,13 +38,14 @@ h2 {
 }
 
 /* User list styles */
+/* User list styles */
 .user-list {
   background-color: #1a1a1a;
   padding: 20px;
   border-radius: 8px;
   width: 45%;
-  max-height: 400px;
-  overflow-y: auto; /* Scroll slider */
+  max-height: 400px; /* Fixed height to enable scrolling */
+  overflow-y: auto; /* Vertical scrollbar */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -57,12 +58,14 @@ h2 {
 .user-list ol {
   list-style-position: inside;
   padding-left: 0;
+  margin: 0;
 }
 
 .user-list li {
   margin-bottom: 10px;
   color: #dddddd;
 }
+
 
 /* User details styles */
 .user-details {
@@ -230,6 +233,7 @@ h2 {
 
 
 .error {
+  text-align: center;
   color: #ff4c4c;
 }
 

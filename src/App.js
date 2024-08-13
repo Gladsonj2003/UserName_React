@@ -9,7 +9,7 @@ import UserDetails from './components/UserDetails';
 
 function App() {
   const [userList, setUserList] = useState([]);
-  const [isAuthenticated, setIsAuthenticated] = useState(true); // Example state for authentication
+  const [isAuthenticated, setIsAuthenticated] = useState(true); // state for authentication
 
   useEffect(() => {
     fetchUsers();

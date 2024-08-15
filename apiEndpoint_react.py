@@ -37,7 +37,23 @@ def add_users():
 @app.route('/get_users', methods=['GET'])
 def get_users():
     try:
-        users = list(user_details_collection.find({}, {'_id': 0}))  # Exclude MongoDB `_id`
+        search_query = request.args.get('search', '')
+        sort_order = request.args.get('sort', 'ascending')
+
+        query = {}
+        if search_query:
+            query = {
+                "$or": [
+                    {"firstName": {"$regex": search_query, "$options": "i"}},
+                    {"lastName": {"$regex": search_query, "$options": "i"}}
+                ]
+            }
+
+        sort_field = [("firstName", 1)]  # Default sort: ascending
+        if sort_order == 'descending':
+            sort_field = [("firstName", -1)]  # Descending
+
+        users = list(user_details_collection.find(query, {'_id': 0}).sort(sort_field))
         return jsonify({"users": users}), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500

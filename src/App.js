@@ -43,7 +43,7 @@ function App() {
                 Logout
               </button>
               <div className="user-list-container">
-                <UserList userList={userList} />
+                <UserList userList={userList} initialSort="ascending" />
                 <UserDetails fetchUsers={fetchUsers} />
               </div>
             </div>

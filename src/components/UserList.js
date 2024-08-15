@@ -4,10 +4,13 @@ function UserList({ userList }) {
   const [searchQuery, setSearchQuery] = useState('');
   const [sortedList, setSortedList] = useState([]);
   const [error, setError] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [usersPerPage] = useState(5); // Number of users per page
 
   useEffect(() => {
-    // Initialize sorted list
+    // Initialize sorted list and pagination
     setSortedList(userList);
+    setCurrentPage(1); // Reset to the first page when user list changes
   }, [userList]);
 
   // Search functionality
@@ -48,6 +51,21 @@ function UserList({ userList }) {
     }
   };
 
+  // Pagination functionality
+  const indexOfLastUser = currentPage * usersPerPage;
+  const indexOfFirstUser = indexOfLastUser - usersPerPage;
+  const currentUsers = sortedList.slice(indexOfFirstUser, indexOfLastUser);
+
+  const totalPages = Math.ceil(sortedList.length / usersPerPage);
+
+  const handlePageChange = (direction) => {
+    if (direction === 'next' && currentPage < totalPages) {
+      setCurrentPage(prevPage => prevPage + 1);
+    } else if (direction === 'prev' && currentPage > 1) {
+      setCurrentPage(prevPage => prevPage - 1);
+    }
+  };
+
   return (
     <div className="user-list">
       <h2>User List</h2>
@@ -64,10 +82,15 @@ function UserList({ userList }) {
       </select>
       {error && <p className="error">{error}</p>}
       <ol>
-        {sortedList.map((user, index) => (
+        {currentUsers.map((user, index) => (
           <li key={index}>{user.firstName} {user.lastName}</li>
         ))}
       </ol>
+      <div className="pagination">
+        <button onClick={() => handlePageChange('prev')}>&lt;</button>
+        <span>{currentPage}</span>
+        <button onClick={() => handlePageChange('next')}>&gt;</button>
+      </div>
     </div>
   );
 }

@@ -38,7 +38,6 @@ h2 {
 }
 
 /* User list styles */
-/* User list styles */
 .user-list {
   background-color: #1a1a1a;
   padding: 20px;
@@ -47,6 +46,7 @@ h2 {
   max-height: 400px; /* Fixed height to enable scrolling */
   overflow-y: auto; /* Vertical scrollbar */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
 }
 
 .user-list h2 {
@@ -240,4 +240,26 @@ h2 {
 .success {
   color: #4caf50;
   text-align: center;
+}
+
+/* Pagination styles */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  background: none;
+  border: none;
+  color: #0056b3;
+  font-size: 18px;
+  cursor: pointer;
+  margin: 0 10px;
+}
+
+.pagination span {
+  color: #ffffff;
+  font-size: 18px;
 }

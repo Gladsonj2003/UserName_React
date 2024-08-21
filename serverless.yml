@@ -1,0 +1,34 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: gladson
+# "app" enables Serverless Framework Dashboard features and sharing them with other Services.
+app: my-flask-backend
+service: flask-backend
+
+provider:
+  name: aws
+  runtime: python3.9
+  region: ap-south-1  # Change this to your desired region
+
+functions:
+  app:
+    handler: wsgi_handler.handler
+    events:
+      - http:
+          path: /
+          method: ANY
+      - http:
+          path: /{proxy+}
+          method: ANY
+
+plugins:
+  - serverless-python-requirements
+
+custom:
+  pythonRequirements:
+    dockerizePip: true
+    zip: true
+
+package:
+  exclude:
+    - node_modules/**
+    - .git/**

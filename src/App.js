@@ -17,14 +17,14 @@ function App() {
 
   const fetchUsers = async () => {
     try {
-      const response = await fetch('http://localhost:5000/get_users');
+      const response = await fetch('https://hggv0n764l.execute-api.ap-south-1.amazonaws.com/username/get_users');
       const data = await response.json();
       setUserList(data.users);
     } catch (err) {
       console.error('Failed to fetch users.');
     }
   };
-
+  
   const handleLogout = () => {
     localStorage.removeItem('userToken'); // Clear user token or session
     setIsAuthenticated(false); // Update authentication state

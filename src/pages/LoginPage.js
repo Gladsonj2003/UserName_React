@@ -9,18 +9,18 @@ function LoginPage() {
 
   const handleLogin = async (event) => {
     event.preventDefault();
-
+  
     try {
-      const response = await fetch('http://localhost:5000/login', {
+      const response = await fetch('https://hggv0n764l.execute-api.ap-south-1.amazonaws.com/username/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ email, password }),
       });
-
+  
       const data = await response.json();
-
+  
       if (response.ok) {
         navigate('/home'); // Redirect to the home page
       } else {
@@ -29,7 +29,7 @@ function LoginPage() {
     } catch (err) {
       setError('Failed to connect to the server.');
     }
-  };
+  };  
 
   return (
     <div className="login-container">

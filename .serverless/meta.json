@@ -1,0 +1,175 @@
+{
+  "D:\\webDevLearn\\React\\user_name": {
+    "versionSfCore": null,
+    "versionFramework": "4.1.22",
+    "isWithinCompose": false,
+    "isCompose": false,
+    "composeOrgName": null,
+    "composeResolverProviders": {
+      "aws": {
+        "instance": {
+          "credentials": "<REDACTED>",
+          "serviceConfigFile": {
+            "service": "flask-backend",
+            "provider": {
+              "name": "aws",
+              "runtime": "python3.9",
+              "region": "ap-south-1",
+              "stage": "dev",
+              "versionFunctions": true
+            },
+            "functions": {
+              "app": {
+                "handler": "wsgi_handler.handler",
+                "events": [
+                  {
+                    "http": {
+                      "path": "/",
+                      "method": "ANY"
+                    }
+                  },
+                  {
+                    "http": {
+                      "path": "/{proxy+}",
+                      "method": "ANY"
+                    }
+                  }
+                ]
+              }
+            },
+            "plugins": [
+              "serverless-python-requirements"
+            ],
+            "custom": {
+              "pythonRequirements": {
+                "dockerizePip": true,
+                "zip": true
+              }
+            },
+            "package": {
+              "exclude": [
+                "node_modules/**",
+                ".git/**"
+              ]
+            }
+          },
+          "configFileDirPath": "D:\\webDevLearn\\React\\user_name",
+          "config": {
+            "type": "aws"
+          },
+          "options": {
+            "template": "aws-python3",
+            "path": "my-flask-backend"
+          },
+          "stage": "dev",
+          "dashboard": null,
+          "isDefaultConfig": true
+        },
+        "resolvers": {}
+      }
+    },
+    "composeServiceName": null,
+    "servicePath": "D:\\webDevLearn\\React\\user_name",
+    "serviceConfigFileName": "serverless.yml",
+    "service": {
+      "service": "flask-backend",
+      "provider": {
+        "name": "aws",
+        "runtime": "python3.9",
+        "region": "ap-south-1",
+        "stage": "dev",
+        "versionFunctions": true
+      },
+      "functions": {
+        "app": {
+          "handler": "wsgi_handler.handler",
+          "events": [
+            {
+              "http": {
+                "path": "/",
+                "method": "ANY"
+              }
+            },
+            {
+              "http": {
+                "path": "/{proxy+}",
+                "method": "ANY"
+              }
+            }
+          ]
+        }
+      },
+      "plugins": [
+        "serverless-python-requirements"
+      ],
+      "custom": {
+        "pythonRequirements": {
+          "dockerizePip": true,
+          "zip": true
+        }
+      },
+      "package": {
+        "exclude": [
+          "node_modules/**",
+          ".git/**"
+        ]
+      }
+    },
+    "serviceRawFile": "service: flask-backend\r\n\r\nprovider:\r\n  name: aws\r\n  runtime: python3.9\r\n  region: ap-south-1  # Change this to your desired region\r\n\r\nfunctions:\r\n  app:\r\n    handler: wsgi_handler.handler\r\n    events:\r\n      - http:\r\n          path: /\r\n          method: ANY\r\n      - http:\r\n          path: /{proxy+}\r\n          method: ANY\r\n\r\nplugins:\r\n  - serverless-python-requirements\r\n\r\ncustom:\r\n  pythonRequirements:\r\n    dockerizePip: true\r\n    zip: true\r\n\r\npackage:\r\n  exclude:\r\n    - node_modules/**\r\n    - .git/**\r\n",
+    "command": [
+      "create"
+    ],
+    "options": {
+      "template": "aws-python3",
+      "path": "my-flask-backend"
+    },
+    "error": {
+      "message": "The \"create\" command was deprecated in v4. To create a new project, run the \"serverless\" command instead.",
+      "code": "UNRECOGNIZED_CLI_COMMAND"
+    },
+    "params": {},
+    "machineId": "e786e3c1e5863942e318679f04fd6246",
+    "accessKeyV2": "<REDACTED>",
+    "accessKeyV1": "<REDACTED>",
+    "orgId": "b16ad1f0-fa45-4d79-96f3-9a8d1e1fac71",
+    "orgName": "gladson",
+    "userId": "FpJNmzBH4jzXC0wfnZ",
+    "dashboard": {
+      "isEnabledForService": false,
+      "requiredAuthentication": false,
+      "orgFeaturesInUse": null,
+      "orgObservabilityIntegrations": null,
+      "serviceAppId": null,
+      "serviceProvider": null,
+      "instanceParameters": null
+    },
+    "userName": "gladson",
+    "subscription": null,
+    "userEmail": "joelraja2016@gmail.com",
+    "serviceProviderAwsCredentials": "<REDACTED>",
+    "serviceProviderAwsAccountId": "170083531654",
+    "versionSf": "4.1.22",
+    "serviceProviderAwsCfStackName": "flask-backend-dev",
+    "serviceProviderAwsCfStackId": null,
+    "serviceProviderAwsCfStackCreated": null,
+    "serviceProviderAwsCfStackUpdated": null,
+    "serviceProviderAwsCfStackStatus": null,
+    "serviceProviderAwsCfStackOutputs": null
+  },
+  "unknown": {
+    "versionSfCore": null,
+    "versionFramework": "4.1.22",
+    "isWithinCompose": false,
+    "composeOrgName": null,
+    "composeServiceName": null,
+    "command": [],
+    "options": {},
+    "error": null,
+    "machineId": "e786e3c1e5863942e318679f04fd6246",
+    "serviceProviderAwsCfStackId": null,
+    "serviceProviderAwsCfStackCreated": null,
+    "serviceProviderAwsCfStackUpdated": null,
+    "serviceProviderAwsCfStackStatus": null,
+    "serviceProviderAwsCfStackOutputs": null
+  }
+}

@@ -10,23 +10,23 @@ function UserDetails({ fetchUsers }) {
     event.preventDefault();
     setError('');
     setMessage('');
-
+  
     if (firstName.trim() === '' || lastName.trim() === '') {
       setError('Please enter both first name and last name.');
       return;
     }
-
+  
     try {
-      const response = await fetch('http://localhost:5000/add_users', {
+      const response = await fetch('https://hggv0n764l.execute-api.ap-south-1.amazonaws.com/username/add_users', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ firstName, lastName }),
       });
-
+  
       const data = await response.json();
-
+  
       if (response.ok) {
         setMessage('User added successfully!');
         setFirstName('');
@@ -38,7 +38,7 @@ function UserDetails({ fetchUsers }) {
     } catch (err) {
       setError('Failed to connect to the server.');
     }
-  };
+  };  
 
   return (
     <div className="user-details">

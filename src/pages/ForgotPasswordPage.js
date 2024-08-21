@@ -12,12 +12,12 @@ function ForgotPasswordPage() {
     event.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:5000/forgot-password', {
+      const response = await fetch('https://hggv0n764l.execute-api.ap-south-1.amazonaws.com/username/forgot-password', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, newPassword }), // Include both email and newPassword in the request
+        body: JSON.stringify({ email }),
       });
 
       const data = await response.json();
